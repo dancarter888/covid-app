@@ -27,7 +27,7 @@ const App = () => {
             for (var country in response.data) {
                 if (country === "Australia") {
                     fetchedCases.push({name:country, confirmed: response.data[country].All.confirmed, lat: "-25.2744", long: "133.7751"});
-                } else {
+                } else {p
                     fetchedCases.push({name:country, confirmed: response.data[country].All.confirmed, lat: response.data[country].All.lat, long: response.data[country].All.long});
                 }
             }
@@ -40,9 +40,12 @@ const App = () => {
 
     const renderWindow = () => {
         if (activeWindow === "table") {
-            return (<Table countries={casesState}/>);
+            return (<div className="flex justify-center items-center w-4/5">
+                        <Table countries={casesState}/>
+                    </div>
+            );
         } else {
-            return (<div className="relative h-2/3 w-2/3">
+            return (<div className="display-window relative h-full w-4/5">
                         <MapContainer countries={casesState}/>
                     </div>
             );
@@ -50,9 +53,20 @@ const App = () => {
     }
 
     return (
-        <div className="h-screen">
-            <button onClick={handleToggle}>Toggle</button>
-            {renderWindow()}
+        <div>
+            <div className="main h-screen flex justify-center items-center">
+                <div className="glass bg-white h-4/5 w-4/5 rounded-3xl z-10 flex border-solid border-2 border-white border border-opacity-10 overflow-hidden">
+                    <div className="dashboard w-1/5 flex flex-col justify-center items-center">
+                        <button onClick={handleToggle}>Toggle</button>
+                    </div>
+                    
+                    {renderWindow()}
+                </div>
+                <div className="circle -top-48 right-8 z-0"></div>
+                <div className="circle -bottom-56 left-36 z-0"></div>
+                
+            </div>
+            
         </div>
     );
 }
