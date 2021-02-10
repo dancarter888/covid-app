@@ -6,7 +6,7 @@ import MapContainer from './MapContainer';
 const App = () => {
 
     const [casesState, setCasesState] = useState([]);
-    const [activeWindow, setActiveWindow] = useState("map");
+    const [activeWindow, setActiveWindow] = useState("table");
     var fetchedCases = [];
     const defaultUrl = "https://covid-api.mmediagroup.fr/v1/cases?continent=oceania";
 
@@ -34,6 +34,10 @@ const App = () => {
         })
     };  
 
+    const handleToggle = () => {
+        activeWindow === "table" ? setActiveWindow("map") : setActiveWindow("table");
+    }
+
     const renderWindow = () => {
         if (activeWindow === "table") {
             return (<Table countries={casesState}/>);
@@ -47,6 +51,7 @@ const App = () => {
 
     return (
         <div className="h-screen">
+            <button onClick={handleToggle}>Toggle</button>
             {renderWindow()}
         </div>
     );
