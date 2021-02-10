@@ -6,6 +6,7 @@ import MapContainer from './MapContainer';
 const App = () => {
 
     const [casesState, setCasesState] = useState([]);
+    const [activeWindow, setActiveWindow] = useState("map");
     var fetchedCases = [];
     const defaultUrl = "https://covid-api.mmediagroup.fr/v1/cases?continent=oceania";
 
@@ -33,10 +34,20 @@ const App = () => {
         })
     };  
 
+    const renderWindow = () => {
+        if (activeWindow === "table") {
+            return (<Table countries={casesState}/>);
+        } else {
+            return (<div className="relative h-2/3 w-2/3">
+                        <MapContainer countries={casesState}/>
+                    </div>
+            );
+        }
+    }
+
     return (
-        <div>
-            <Table cases={casesState}/>
-            <MapContainer countries={casesState}/>
+        <div className="h-screen">
+            {renderWindow()}
         </div>
     );
 }

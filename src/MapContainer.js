@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-import MarkerContainer from './MarkerContainer';
 
 export class MapContainer extends Component {
 
@@ -34,7 +33,7 @@ export class MapContainer extends Component {
     console.log(this.props.countries);
     return (
       <Map google={this.props.google}
-        style={{width: '50%', height: '50%', position: 'relative'}}
+        style={{width: '100%%', height: '100%', position: 'relative'}}
         className={'map'}
         zoom={2.5}
         initialCenter={

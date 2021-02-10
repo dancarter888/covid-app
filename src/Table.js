@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Table = ({cases}) => {
+const Table = ({countries}) => {
     return (
         <table>
             <thead>
@@ -10,7 +10,7 @@ const Table = ({cases}) => {
                 </tr>
             </thead>
             <tbody>
-            {cases.map((country) => {
+            {countries.map((country) => {
                 return (<tr>
                     <td>{country.name}</td>
                     <td>{country.confirmed}</td>
