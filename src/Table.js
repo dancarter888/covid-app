@@ -11,13 +11,9 @@ const Table = ({cases}) => {
             </thead>
             <tbody>
             {cases.map((country) => {
-                let confirmedCases = "No Data Available";
-                if (country.cases !== undefined) {
-                    confirmedCases = country.cases.All.confirmed
-                }
                 return (<tr>
                     <td>{country.name}</td>
-                    <td>{confirmedCases}</td>
+                    <td>{country.confirmed}</td>
                 </tr>);
             })}
             </tbody>
