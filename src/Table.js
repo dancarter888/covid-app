@@ -13,7 +13,7 @@ const Table = ({cases}) => {
             {cases.map((country) => {
                 let confirmedCases = "No Data Available";
                 if (country.cases !== undefined) {
-                    confirmedCases = country.cases.confirmed
+                    confirmedCases = country.cases.All.confirmed
                 }
                 return (<tr>
                     <td>{country.name}</td>

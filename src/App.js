@@ -5,9 +5,8 @@ import Table from './Table';
 const App = () => {
 
     const [casesState, setCasesState] = useState([]);
-    const oceaniaCountries = ["Australia", "Papua New Guinea", "New Zealand", "Fiji", "Solomon Islands", "Vanuatu", "New Caledonia", "French Polynesia", "Samoa", "Guam", "Kiribati", "Federated States of Micronesia", "Tonga", "American Samoa", "Northern Mariana Islands", "Marshall Islands", "Palau", "Cook Islands", "Wallis and Futuna", "Tuvalu", "Nauru", "Norfolk Island", "Niue", "Tokelau", "Pitcairn Islands"];
     var fetchedCases = [];
-    const defaultUrl = "https://covid-api.mmediagroup.fr/v1/cases?country=";
+    const defaultUrl = "https://covid-api.mmediagroup.fr/v1/cases?continent=oceania";
 
     useEffect(() => {
         //Scoped async function
@@ -21,21 +20,14 @@ const App = () => {
         }  
     });
 
-    // async function fetchAllCountries() {
-    //     await axios.get(url).then(response => {
-    //         fetchedCases.push(response.data);
-    //     })
-    // };
-
     async function fetchAllCountries() {
-        let promises = [];
-        for (let i=0; i<oceaniaCountries.length; i++) {
-            promises.push(axios.get(defaultUrl + oceaniaCountries[i]).then(response => {
-                fetchedCases.push({name: oceaniaCountries[i], cases: response.data.All});
-            }))
-        }
-        return Promise.all(promises);
-    }    
+        await axios.get(defaultUrl).then(response => {
+            console.log(response.data);
+            for (var country in response.data) {
+                fetchedCases.push({name:country, cases: response.data[country]});
+            }
+        })
+    };  
 
     return (
         <div>
