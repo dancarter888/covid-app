@@ -1,30 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Table from './Table';
 
 const App = () => {
 
-    const [cases, setCases] = useState([]);
-    const ocianiaCountries = ["Australia", "Papua New Guinea", "New Zealand", "Fiji", "Solomon Islands", "Vanuatu", "New Caledonia", "French Polynesia", "Samoa", "Guam", "Kiribati", "Federated States of Micronesia", "Tonga", "American Samoa", "Northern Mariana Islands", "Marshall Islands", "Palau", "Cook Islands", "Wallis and Futuna", "Tuvalu", "Nauru", "Norfolk Island", "Niue", "Tokelau", "Pitcairn Islands"];
-    var covidCases = [];
-    const defaultUrl = "https://covid-api.mmediagroup.fr/v1/cases/?country=";
+    const [casesState, setCasesState] = useState([]);
+    const oceaniaCountries = ["Australia", "Papua New Guinea", "New Zealand", "Fiji", "Solomon Islands", "Vanuatu", "New Caledonia", "French Polynesia", "Samoa", "Guam", "Kiribati", "Federated States of Micronesia", "Tonga", "American Samoa", "Northern Mariana Islands", "Marshall Islands", "Palau", "Cook Islands", "Wallis and Futuna", "Tuvalu", "Nauru", "Norfolk Island", "Niue", "Tokelau", "Pitcairn Islands"];
+    var fetchedCases = [];
+    const defaultUrl = "https://covid-api.mmediagroup.fr/v1/cases?country=";
 
     useEffect(() => {
-        //scoped async function
-        const setData = async() => {
+        //Scoped async function
+        const fetchAndSetData = async() => {
             await fetchAllCountries();
-            console.log(covidCases);
-            setCases(covidCases);
+            console.log(fetchedCases);
+            setCasesState(fetchedCases);
         }
-        if (cases.length === 0) {
-            setData();
+        if (casesState.length === 0) {
+            fetchAndSetData();
         }  
     });
 
+    // async function fetchAllCountries() {
+    //     await axios.get(url).then(response => {
+    //         fetchedCases.push(response.data);
+    //     })
+    // };
+
     async function fetchAllCountries() {
         let promises = [];
-        for (let i=0; i<ocianiaCountries.length; i++) {
-            promises.push(axios.get(defaultUrl + ocianiaCountries[i]).then(response => {
-                covidCases.push({name: ocianiaCountries[i], cases: response.data.All});
+        for (let i=0; i<oceaniaCountries.length; i++) {
+            promises.push(axios.get(defaultUrl + oceaniaCountries[i]).then(response => {
+                fetchedCases.push({name: oceaniaCountries[i], cases: response.data.All});
             }))
         }
         return Promise.all(promises);
@@ -32,16 +39,7 @@ const App = () => {
 
     return (
         <div>
-            {cases.map((country) => {
-                let confirmedCases = "No Data Available";
-                if (country.cases !== undefined) {
-                    confirmedCases = country.cases.confirmed
-                }
-                return (<div>
-                    <div>{country.name}</div>
-                    <div>{confirmedCases}</div>
-                </div>);
-            })}
+            <Table cases={casesState}/>
         </div>
     );
 }
