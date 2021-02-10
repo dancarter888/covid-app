@@ -2,40 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .glass {
-    background: linear-gradient(
-      to right bottom,
-      rgba(255, 255, 255, 0.7),
-      rgba(255, 255, 255, 0.3)
-    );
-    backdrop-filter: blur(2rem);
-  }
+.active {
+  @apply text-5xl text-black;
+}
 
-  .main {
-    background: linear-gradient(to right top, #5ef2c1, #5e84f2);
-  }
+.inactive {
+  @apply text-2xl text-gray-500;
+}
 
-  .circle {
-    background: linear-gradient(to right top, #5ef2c1, #5e84f2);
-    height: 30rem;
-    width: 30rem;
-    position: absolute;
-    border-radius: 50%;
-    border-style: solid;
-    border-width: 2px;
-    border-color: rgba(255, 255, 255, 0.5);
-  }
-
-  .dashboard {
-    background: linear-gradient(
+.glass {
+  background: linear-gradient(
     to right bottom,
-    rgba(255, 255, 255, 0.4),
-    rgba(255, 255, 255, 0.1)
-    );
-    border-radius: 1.5rem 0rem 0rem 1.5rem;
-    border-style: solid;
-    border-width: 0px 2px 0px 0px;
-    border-color: rgba(255, 255, 255, 0.1);
-  }
+    rgba(255, 255, 255, 0.911),
+    rgba(255, 255, 255, 0.3)
+  );
+  backdrop-filter: blur(2rem);
+}
+
+.main {
+  background: repeating-linear-gradient(
+  135deg,
+  #FBBF24,
+  #FBBF24 80px,
+  #ffffff 80px,
+  #ffffff 160px
+);
+}
+
+.circle {
+  background: linear-gradient(to right top, #ffffff, #FBBF24);
+  height: 30rem;
+  width: 30rem;
+  position: absolute;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.dashboard {
+  background: linear-gradient(
+  to right bottom,
+  rgba(255, 255, 255, 0.4),
+  rgba(255, 255, 255, 0.1)
+  );
+  border-radius: 1.5rem 0rem 0rem 1.5rem;
+  border-style: solid;
+  border-width: 0px 2px 0px 0px;
+  border-color: rgba(255, 255, 255, 0.1);
 }

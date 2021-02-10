@@ -48,7 +48,7 @@ export class MapContainer extends Component {
           return (
             <Marker
               onClick={this.onMarkerClick}
-              name={country.name + ": " + country.confirmed}
+              name={country.name + ": " + country.confirmed.toLocaleString()}
               position = {{lat: country.lat, lng: country.long}}
               />
           );
