@@ -1,6 +1,6 @@
 # Covid App
 
-## [LIVE SITE HERE](https://eager-golick-d1f261.netlify.app/)
+## [LIVE SITE HERE](https://6024828b5894db00087603b8--eager-golick-d1f261.netlify.app/)
 
 This project was setup using create-react-app.
 After the the necessary modules and plugins (tailwind craco etc) were installed I started working on fetching data from the API.
