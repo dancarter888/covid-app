@@ -1,3 +1,29 @@
+# Covid App
+
+## [LIVE SITE HERE](https://eager-golick-d1f261.netlify.app/)
+
+This project was setup using create-react-app.
+After the the necessary modules and plugins (tailwind craco etc) were installed I started working on fetching data from the API.
+
+I chose to install and use axios as it makes fetching data from an API simple. I started by querying every country in Oceania from the API as it offers a country query (/cases?country=). This revealed some errors within the API as some countries did not return any data and instead were undefined. I then saw there was a was to query by continent (/cases?continent=) so querying with Oceania fixed this issue.
+
+I used the useEffect react hook within the App component to fetch the data asynchronously after the component had mounted and then I stored that data within the components state. To make sure this only happened once, I only fetched the data when the state was empty otherwise every time the state were to be updated, the component would re-render.
+
+The data was returned as a JSON object so I parsed that object to create an array of JSON objects all with the fields: 
+name - country name
+confirmed - number of confirmed cases in that country
+lat - latitude of country’s location
+long - longitude of country’s location
+
+In the case of Australia, the API did not return its location so I figured the best thing to do would be to manually provide the coordinates of Australia’s centre so it looked consistent when all the counters were displayed on the map.
+
+I then moved to creating a Table component to display this data in a simple table. Next, the MapContainer was created. I found a module called google-maps-react which sits onto of Google’s JavaScript API. After creating my Google Cloud API key I read a bit of the google-maps-react and Google JavaScript API documentation and created a simple map which is centred at Oceania’s coordinates. I then passed the data received from the covid API to the MapContainer component as a prop.
+A marker was mapped to every country and was placed on the map using its lat and long properties. And InfoWindow was then setup to display the number of cases for a country when it is clicked.
+
+Next I used tailwind and react-reveal to style the website. I chose to go with the same colours and theme as are displayed in a lot of covid posters around New Zealand. I chose the same chose the same colours for the table and added a little animation. I created a toggle to toggle between the map and table which does this by changing the state within the App component and then sets the class of either the map or the table to “active” or “inactive”. A few custom utilities and styles were created within index.css.
+
+Lastly I deployed the website to netlify from my GitHub.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
