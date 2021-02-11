@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Table from './Table';
 import MapContainer from './MapContainer';
-import toggleIcon from './images/Toggle.svg';
+import toggleIcon from '../images/Toggle.svg';
 
 const App = () => {
 
